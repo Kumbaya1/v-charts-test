@@ -1,6 +1,6 @@
 <template>
   <div class="side-bar">
-    <div class="side-bar-item" v-for="(chartArr,index) in list" :key="Math.random()">
+    <div class="side-bar-item" v-for="(chartArr) in list" :key="Math.random()">
       <div class="chart-item" v-for="chartData in chartArr" :key="chartData.key">
         <Chart :cData="chartData"></Chart>
       </div>

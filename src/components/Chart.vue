@@ -19,13 +19,14 @@
         width="100%"
         :data="currentData.data"
         :extend="chartExtend"
+        :legend="legendOption"
+        :after-set-option="afterSetOption"
+        :settings="chartSettings"
       ></component>
     </div>
   </div>
 </template>
 <script>
-// import Vue from "vue";
-import "v-charts/lib/style.css";
 import VeLine from "v-charts/lib/line.common";
 import veHistogram from "v-charts/lib/histogram.common";
 import vePie from "v-charts/lib/pie.common";
@@ -47,12 +48,29 @@ export default {
         histogram: veHistogram,
         pie: vePie
       },
+      legendOption: {
+        icon: "rect",
+        textStyle: {
+          color: "#ffffff",
+          fontSize: 12
+        },
+        pageIconColor: "#aaa",
+        pageIconInactiveColor: "#2f4554",
+        type: "scroll",
+        pageIconSize: [15, 15],
+        bottom: 5,
+        width: "84%",
+        orient: "horizontal",
+        itemWidth: 12,
+        itemHeight: 10,
+        itemGap: 5
+      },
       extends: {
         line: {
           grid: {
             top: 40,
             left: 10,
-            bottom: 10,
+            bottom: 30,
             right: 10,
             containLabel: true
           }
@@ -61,17 +79,28 @@ export default {
           grid: {
             top: 40,
             left: 10,
-            bottom: 10,
+            bottom: 30,
             right: 10,
             containLabel: true
           }
         },
-        pie: {}
+        pie: {
+          grid: {
+            top: 40,
+            left: 10,
+            bottom: 30,
+            right: 10,
+            containLabel: true
+          }
+        }
+      },
+      chartSettings: {
+          radius:50,
+          offsetY:100
       }
     };
   },
   mounted() {
-    debugger;
     this.currentLabelValue = this.cData[this.dataIndex].label.value;
   },
   methods: {
@@ -81,6 +110,17 @@ export default {
           this.dataIndex = index;
         }
       });
+    },
+    beforeConfig() {
+      // console.log(arguments)
+    },
+    afterSetOption(initstance) {
+      let option = initstance.getOption();
+      console.log(option);
+      //   option.legend[0].type = "scroll";
+      //   initstance.clear();
+      //   initstance.setOption(option);
+      //   console.log(initstance.setOption({ legend: { type: "scroll" } }));
     }
   },
   computed: {
@@ -92,7 +132,7 @@ export default {
       return view;
     },
     chartExtend() {
-      let extend = {};
+      let extend;
       if (this.cData[this.dataIndex].type) {
         extend = this.extends[this.cData[this.dataIndex].type] || {};
       }
@@ -115,7 +155,7 @@ export default {
   line-height: 20px;
   font-size: 14px;
   font-weight: 300;
-  color: #000;
+  color: #f2efe6;
   padding: 5px 20px;
   text-align: left;
 }
@@ -129,7 +169,6 @@ export default {
   position: absolute;
   right: 0;
   top: 5px;
-  width: 200px;
   bottom: 0;
 }
 </style>

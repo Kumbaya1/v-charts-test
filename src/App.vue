@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
       <button @click="handleChangeData">get</button>
+        <router-link to="/Legendtest">测试</router-link>
     </div>
     <div class="content">
       <router-view/>
