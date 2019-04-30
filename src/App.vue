@@ -3,12 +3,22 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
+      <button @click="handleChangeData">get</button>
     </div>
     <div class="content">
       <router-view/>
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    handleChangeData() {
+      this.$store.commit("init");
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -36,5 +46,12 @@
 }
 .content {
   height: calc(100% - 78px);
+}
+html,
+body {
+  height: 100%;
+}
+body{
+  overflow: hidden;
 }
 </style>

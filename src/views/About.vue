@@ -35,6 +35,7 @@ export default {
 }
 .right-side-bar {
   flex: 2;
-  background: #909399;
+  width: 0;
+  background: #495A80;
 }
 </style>
