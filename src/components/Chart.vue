@@ -34,9 +34,7 @@ export default {
   props: {
     cData: {
       type: Array,
-      default: () => {
-        return [];
-      }
+      default: () => []
     }
   },
   data() {
@@ -95,8 +93,8 @@ export default {
         }
       },
       chartSettings: {
-          radius:50,
-          offsetY:100
+        radius: 50,
+        offsetY: 100
       }
     };
   },

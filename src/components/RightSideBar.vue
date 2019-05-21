@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar">
-    <div class="side-bar-item" v-for="(chartArr) in list" :key="Math.random()">
-      <div class="chart-item" v-for="chartData in chartArr" :key="chartData.key">
+    <div class="side-bar-item" v-for="(chartArr,index) in list" :key="index">
+      <div class="chart-item" v-for="(chartData,idx) in chartArr" :key="idx">
         <Chart :cData="chartData"></Chart>
       </div>
     </div>
@@ -20,6 +20,7 @@ export default {
   },
   computed: {
     list() {
+      console.log(this.$store.state.chartDataList)
       return this.$store.state.chartDataList;
     }
   },
@@ -34,6 +35,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .side-bar-item {
   flex: 1;
